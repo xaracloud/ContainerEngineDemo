@@ -1,21 +1,21 @@
 apiVersion: v1
 kind: ReplicationController
 metadata:
-  name: customer-service-v2
+  name: customer-service-vroll
   labels:
     run: customer-service
 spec:
   replicas: 3
   selector:
     name: customer-service
-    version: v2
+    version: vroll
   #our pod template
   template:
     metadata:
       labels:
         name: customer-service
         run: customer-service
-        version: v2
+        version: vroll
     spec:
       containers:
       - name: customer-service
