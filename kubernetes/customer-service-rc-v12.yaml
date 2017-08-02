@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: customer-service-v2
+  labels:
+    run: customer-service-v2
+spec:
+  replicas: 1
+  selector:
+    name: customer-service-v2
+    version: v2
+  #our pod template
+  template:
+    metadata:
+      labels:
+        name: customer-service-v2
+        run: customer-service-v2
+        version: v2
+    spec:
+      containers:
+      - name: customer-service
+        image: gcr.io/hack-gcph-7/customer-service:v2
+        ports:
+        - containerPort: 3333
+          protocol: TCP

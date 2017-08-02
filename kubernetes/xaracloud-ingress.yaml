@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+#  annotations:
+#    zalando.org/backend-weights: |
+#      {"customer-nodeport": 90, "customer-nodeport2": 10}
+  name: xaracloud-ingress
+spec:
+  backend:
+    serviceName: account-nodeport
+    servicePort: 80
+  rules:
+  - host: xaracloud.hsbc.org
+    http:
+      paths:
+      - path: /customer-v1
+        backend:
+          serviceName: customer-nodeport
+          servicePort: 80
+      - path: /customer-v2
+        backend:
+          serviceName: customer-nodeport2
+          servicePort: 80
+      - path: /account
+        backend:
+          serviceName: account-nodeport
+          servicePort: 80
